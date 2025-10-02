@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Resident Clinic Guide</title>
+    <style>
+        /* Self-contained CSS - no external dependencies */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 1.125rem;
+            color: #64748b;
+        }
+
+        .grid {
+            display: grid;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .grid-2 {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e2e8f0;
+            padding: 1.5rem;
+        }
+
+        h2 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 0.75rem;
+        }
+
+        .icon-check {
+            color: #2563eb;
+        }
+
+        .icon-star {
+            color: #f59e0b;
+        }
+
+        .icon-clipboard {
+            color: #7c3aed;
+        }
+
+        .icon-timeline {
+            color: #059669;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 1.25rem;
+        }
+
+        li {
+            position: relative;
+            margin-bottom: 0.5rem;
+            color: #475569;
+        }
+
+        li::before {
+            content: "•";
+            color: #3b82f6;
+            font-weight: bold;
+            position: absolute;
+            left: -1rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            font-size: 0.875rem;
+        }
+
+        th {
+            background-color: #f1f5f9;
+            color: #475569;
+            font-weight: 600;
+            text-align: left;
+            padding: 0.75rem;
+            border: 1px solid #e2e8f0;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.05em;
+        }
+
+        td {
+            padding: 1rem 0.75rem;
+            border: 1px solid #e2e8f0;
+            color: #334155;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+
+        .mono {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Liberation Mono", Consolas, monospace;
+            background-color: #f1f5f9;
+            padding: 0.125rem 0.25rem;
+            border-radius: 3px;
+        }
+
+        .note {
+            background-color: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            color: #92400e;
+            padding: 1rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1rem 0;
+            font-size: 0.875rem;
+        }
+
+        .pro-tip {
+            background-color: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 1rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1rem 0;
+        }
+
+        .pro-tip-title {
+            font-weight: 600;
+            color: #92400e;
+            margin-bottom: 0.25rem;
+        }
+
+        .pro-tip-text {
+            color: #92400e;
+            font-size: 0.875rem;
+        }
+
+        .timeline-item {
+            display: flex;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-label {
+            width: 140px;
+            flex-shrink: 0;
+            font-weight: 700;
+            color: #2563eb;
+            font-size: 0.875rem;
+        }
+
+        .timeline-content {
+            color: #475569;
+            font-size: 0.875rem;
+        }
+
+        .level-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: start;
+        }
+
+        .small-table {
+            font-size: 0.875rem;
+        }
+
+        .small-table td,
+        .small-table th {
+            padding: 0.5rem;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .footer-text {
+            color: #64748b;
+            font-size: 0.875rem;
+        }
+
+        .footer-subtext {
+            color: #94a3b8;
+            font-size: 0.75rem;
+            margin-top: 0.25rem;
+        }
+
+        /* Quick Reference Card */
+        .quick-ref {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+        }
+
+        .quick-ref h3 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .quick-ref-grid {
+            display: grid;
+            grid-template-columns: 140px 1fr;
+            gap: 0.5rem 1rem;
+            align-items: center;
+            font-size: 0.875rem;
+        }
+
+        .quick-ref-label {
+            color: #bfdbfe;
+            font-weight: 600;
+        }
+
+        .quick-ref-value {
+            color: white;
+        }
+
+        /* Decision Tree */
+        .decision-tree {
+            background: #f0f9ff;
+            border: 2px solid #0ea5e9;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .decision-tree h4 {
+            color: #0c4a6e;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .decision-step {
+            background: white;
+            border: 1px solid #7dd3fc;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 0.5rem 0;
+        }
+
+        .decision-question {
+            font-weight: 600;
+            color: #0c4a6e;
+            margin-bottom: 0.5rem;
+        }
+
+        .decision-answer {
+            color: #075985;
+            font-size: 0.875rem;
+        }
+
+        /* Visual Indicators */
+        .complexity-bar {
+            display: flex;
+            align-items: center;
+            margin: 0.25rem 0;
+        }
+
+        .complexity-label {
+            width: 80px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .complexity-visual {
+            width: 100px;
+            height: 16px;
+            background: #e5e7eb;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-right: 0.5rem;
+        }
+
+        .complexity-fill {
+            height: 100%;
+            border-radius: 8px;
+        }
+
+        .level-2 {
+            background: #10b981;
+            width: 25%;
+        }
+
+        .level-3 {
+            background: #f59e0b;
+            width: 50%;
+        }
+
+        .level-4 {
+            background: #ef4444;
+            width: 75%;
+        }
+
+        .level-5 {
+            background: #7c3aed;
+            width: 100%;
+        }
+
+        .hydration-convert {
+            background: #ecfdf5;
+            border: 1px solid #10b981;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+
+        .convert-title {
+            color: #065f46;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .convert-example {
+            color: #047857;
+            font-size: 0.875rem;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .container {
+                padding: 0.5rem;
+            }
+
+            .level-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .quick-ref-grid {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+
+            .timeline-item {
+                flex-direction: column;
+                gap: 0.25rem;
+            }
+
+            .timeline-label {
+                width: auto;
+            }
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+
+            .card {
+                box-shadow: none;
+                border: 1px solid #ccc;
+            }
+
+            .quick-ref {
+                background: #f5f5f5 !important;
+                color: black !important;
+            }
+
+            .quick-ref h3,
+            .quick-ref-value {
+                color: black !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <h1>Resident Clinic Guide</h1>
+            <p class="subtitle">Essential Reference for Outpatient Clinical Practice</p>
+        </header>
+
+        <!-- Quick Reference Card -->
+        <div class="quick-ref">
+            <h3>🎯 Quick Reference Card</h3>
+            <div class="quick-ref-grid">
+                <div class="quick-ref-label">Resident Modifier:</div>
+                <div class="quick-ref-value"><strong>GC</strong> (always)</div>
+                <div class="quick-ref-label">Longitudinal Care:</div>
+                <div class="quick-ref-value"><strong>G2211</strong> when relationship applies</div>
+                <div class="quick-ref-label">Common Level:</div>
+                <div class="quick-ref-value"><strong>Level 4</strong> for multiple conditions</div>
+                <div class="quick-ref-label">Post-Hospital:</div>
+                <div class="quick-ref-value"><strong>Med Rec Required</strong> + timing matters</div>
+                <div class="quick-ref-label">AWV Rule:</div>
+                <div class="quick-ref-value"><strong>No hands-on exam</strong></div>
+                <div class="quick-ref-label">Hydration:</div>
+                <div class="quick-ref-value"><strong>60-80 oz daily</strong> (not liters!)</div>
+            </div>
+        </div>
+
+        <!-- Goals and Habits -->
+        <div class="grid grid-2">
+            <div class="card">
+                <h2>
+                    <svg class="icon icon-check" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    Session Goals
+                </h2>
+                <ul>
+                    <li>Classify visit types and select correct base CPT codes</li>
+                    <li>Apply required resident modifiers consistently</li>
+                    <li>Document what each visit type requires</li>
+                    <li>Operationalize logistics patients actually ask about</li>
+                    <li>Close with clear plans, timelines, and backup plans</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2>
+                    <svg class="icon icon-star" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+                    </svg>
+                    High Value Habits
+                </h2>
+                <ul>
+                    <li>Default to level 4 when appropriate, use level 2 when clinically indicated</li>
+                    <li>Add GC to all resident encounters, G2211 for longitudinal care</li>
+                    <li>List orders today vs due next clearly before patient leaves</li>
+                    <li>Translate advice into ounces, stores, locations, and next steps</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Visit Type Decision Tree -->
+        <div class="decision-tree">
+            <h4>🔍 Visit Type Decision Tree</h4>
+            <div class="decision-step">
+                <div class="decision-question">Step 1: Has patient been seen by your group/specialty in past 3 years?</div>
+                <div class="decision-answer">❌ NO → New Patient (99203-99205) | ✅ YES → Established (99212-99215)</div>
+            </div>
+            <div class="decision-step">
+                <div class="decision-question">Step 2: Is this preventive care only?</div>
+                <div class="decision-answer">✅ YES → Annual Physical or AWV | ❌ NO → Problem-focused visit</div>
+            </div>
+            <div class="decision-step">
+                <div class="decision-question">Step 3: Recent hospitalization?</div>
+                <div class="decision-answer">✅ YES → Consider TCM codes (99495/99496) | ❌ NO → Standard E&amp;M codes</div>
+            </div>
+        </div>
+
+        <!-- Visit Types Table -->
+        <div class="card">
+            <h2>📋 Visit Types and Coding</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Visit Type</th>
+                        <th>Definition and Notes</th>
+                        <th>Typical CPT</th>
+                        <th>Modifier</th>
+                        <th>Add-on</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>New Patient</strong></td>
+                        <td>New to the clinic. Longer intake. Avg. complexity often maps to level 4.</td>
+                        <td><span class="mono">99203-99205</span></td>
+                        <td><span class="mono">GC</span></td>
+                        <td><span class="mono">G2211 (if applicable)</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Established Visit</strong></td>
+                        <td>Routine follow up, new complaint, or same day issue.</td>
+                        <td><span class="mono">99212-99215</span></td>
+                        <td><span class="mono">GC</span></td>
+                        <td><span class="mono">G2211 (for continuous care)</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Annual Physical</strong></td>
+                        <td>Preventive only. If problem management is addressed, add problem visit.</td>
+                        <td>Age/payer specific codes</td>
+                        <td><span class="mono">GC</span></td>
+                        <td>None by default</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Medicare AWV</strong></td>
+                        <td>Screening, cognition, function, SDOH, safety. <strong>No hands-on exam.</strong></td>
+                        <td>AWV codes per CMS</td>
+                        <td><span class="mono">GC</span></td>
+                        <td>G2211 with modifier 25 (2025+)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Post-Hospital Follow Up</strong></td>
+                        <td>Time sensitive. Include dates, reason, med changes, pending items.</td>
+                        <td>TCM codes per window</td>
+                        <td><span class="mono">GC</span></td>
+                        <td>Pair as appropriate</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Complexity Visual Guide -->
+        <div class="card">
+            <h2>📊 Level Selection Visual Guide</h2>
+            <div class="complexity-bar">
+                <div class="complexity-label">Level 2</div>
+                <div class="complexity-visual"><div class="complexity-fill level-2"></div></div>
+                <div>Straightforward (one minor problem, minimal risk)</div>
+            </div>
+            <div class="complexity-bar">
+                <div class="complexity-label">Level 3</div>
+                <div class="complexity-visual"><div class="complexity-fill level-3"></div></div>
+                <div>Low complexity (simple visits, OTC treatment)</div>
+            </div>
+            <div class="complexity-bar">
+                <div class="complexity-label">Level 4</div>
+                <div class="complexity-visual"><div class="complexity-fill level-4"></div></div>
+                <div><strong>Moderate complexity</strong> (prescribing, multiple stable conditions) ⭐ MOST COMMON</div>
+            </div>
+            <div class="complexity-bar">
+                <div class="complexity-label">Level 5</div>
+                <div class="complexity-visual"><div class="complexity-fill level-5"></div></div>
+                <div>High complexity (hospital admission, emergencies)</div>
+            </div>
+        </div>
+
+        <!-- Documentation Focus -->
+        <div class="grid grid-2">
+            <div class="card">
+                <h2>
+                    <svg class="icon icon-clipboard" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                    </svg>
+                    Documentation Focus
+                </h2>
+                <div>
+                    <h3><strong>New Patient Intake</strong></h3>
+                    <ul>
+                        <li>Medical, surgical, family, and social history</li>
+                        <li>SDOH (affordability, transport, safety, pharmacy access)</li>
+                        <li>Chief concern, exam, orders, plan, and backup plan</li>
+                    </ul>
+                </div>
+                <div style="margin-top: 1rem;">
+                    <h3><strong>Established Visit Structure</strong></h3>
+                    <ul>
+                        <li>IPO frame: Input, Process, Output</li>
+                        <li>Output includes orders today, items for next visit, timing</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>⚖️ Assessment &amp; Plan</h2>
+                <ul>
+                    <li>What you see, what you think, what you will do now</li>
+                    <li>Contingency if the plan does not work</li>
+                    <li>Less emphasis on ROS/HPI, more on precise A&amp;P</li>
+                    <li>Document when you will recheck and how success will be assessed</li>
+                </ul>
+                <div class="pro-tip">
+                    <div class="pro-tip-title">💡 Pro Tip</div>
+                    <div class="pro-tip-text">Patients gain confidence when plan B is explicit. Always include the contingency in your plan.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- AWV vs Annual Physical Comparison -->
+        <div class="card">
+            <h2>🔄 Annual Physical vs AWV Comparison</h2>
+            <table class="small-table">
+                <thead>
+                    <tr>
+                        <th>Aspect</th>
+                        <th>Annual Physical</th>
+                        <th>Annual Wellness Visit (AWV)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Physical Exam</strong></td>
+                        <td>✅ Required - hands-on examination</td>
+                        <td>❌ No hands-on exam (conversation only)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Focus</strong></td>
+                        <td>Prevention only - no problem management</td>
+                        <td>Functional assessment, risk screening, SDOH</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Problem Management</strong></td>
+                        <td>Creates separate billable visit</td>
+                        <td>Not appropriate for hands-on care</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Eligibility</strong></td>
+                        <td>All patients with insurance coverage</td>
+                        <td>Medicare patients only (any age)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Post-Hospital Timeline -->
+        <div class="card">
+            <h2>
+                <svg class="icon icon-timeline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                Post-Hospital Follow Up Essentials
+            </h2>
+            <div class="timeline-item">
+                <div class="timeline-label">Timing Window</div>
+                <div class="timeline-content">Seven vs fourteen days affects code selection and reimbursement (rates vary by location)</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-label">Why and Where</div>
+                <div class="timeline-content">Hospital name, dates, admitting diagnosis, key events</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-label">Med Rec ⚠️</div>
+                <div class="timeline-content"><strong>Show current active meds after changes. Note is incomplete without it.</strong></div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-label">Pendings</div>
+                <div class="timeline-content">Outstanding studies, referrals, home services, durable equipment</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-label">Ownership</div>
+                <div class="timeline-content">Route to navigation hub or case management for access/social barriers</div>
+            </div>
+        </div>
+
+        <!-- Hydration Conversion -->
+        <div class="hydration-convert">
+            <div class="convert-title">💧 Hydration Counseling Reference</div>
+            <div class="convert-example">
+                <strong>Standard Target:</strong> 60-80 oz daily (NOT 2 liters!)<br />
+                <strong>Teaching Tip:</strong> "Drink half by noon - use a marked 30 oz bottle"<br />
+                <strong>Quick Convert:</strong> 2 liters = ~67 oz | 1.5 liters = ~50 oz
+            </div>
+        </div>
+
+        <!-- Billing Cheat Sheet -->
+        <div class="card">
+            <h2>💰 Billing Cheat Sheet</h2>
+            <div class="level-grid">
+                <div>
+                    <table class="small-table">
+                        <thead>
+                            <tr>
+                                <th>Item</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><span class="mono">GC</span></td><td>Add to <strong>all</strong> resident encounters</td></tr>
+                            <tr><td><span class="mono">G2211</span></td><td>Continuous, relationship-based care only</td></tr>
+                            <tr><td>Level Selection</td><td>Use minutes &amp; complexity. Level 4 common for 2+ stable conditions</td></tr>
+                            <tr><td>Level 2</td><td>Use when clinically appropriate for straightforward visits</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div>
+                    <h3><strong>G2211 Criteria Checklist:</strong></h3>
+                    <ul style="font-size: 0.875rem;">
+                        <li>✅ Ongoing relationship as focal point for care</li>
+                        <li>✅ Managing serious/complex condition over time</li>
+                        <li>✅ Continuous collaborative care plan</li>
+                        <li>❌ NOT for routine or time-limited visits</li>
+                        <li>❌ NOT automatically for all established patients</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <p class="footer-text">
+                Consolidated from AI-generated teaching materials and fact-checked against CMS guidelines (Dec 2024).
+            </p>
+            <p class="footer-subtext">
+                Translate advice into concrete actions a patient can complete today.
+            </p>
+        </footer>
+    </div>
+</body>
+</html>
